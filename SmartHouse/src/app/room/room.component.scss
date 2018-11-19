@@ -1,0 +1,14 @@
+$width-column: 150px;
+.room-box{
+    border: 1px solid black;
+    display: inline-flex;
+    margin: 5px;
+    flex-direction: column;
+    width: $width-column;
+    .room-box-head{
+
+    }
+    .room-box-content{
+
+    }
+}
