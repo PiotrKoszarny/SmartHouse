@@ -13,6 +13,11 @@ import { RoomComponent } from './room/room.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { rootReducer, INITIAL_STATE } from './redux/store';
+import { createStore } from 'redux';
+import { IAppState } from './redux/iAppState';
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +36,21 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MatSlideToggleModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgReduxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    store: NgRedux<IAppState>
+  ) {
+    store.configureStore(
+      rootReducer, INITIAL_STATE
+    );
+  }
+}
+
+
+

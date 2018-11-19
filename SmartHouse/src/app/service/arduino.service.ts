@@ -6,7 +6,7 @@ import { Room } from '../model/room';
   providedIn: 'root'
 })
 export class ArduinoService {
-  arduinoUrl = 'http://192.168.137.173/corridorled';
+  arduinoUrl = 'http://192.168.137.220/corridorled';
   constructor(
     private _http: HttpClient
   ) {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ArduinoService } from '../service/arduino.service';
 import { Room } from '../model/room';
 import { Observable } from 'rxjs';
+import { select } from '@angular-redux/store';
+import { allowPreviousPlayerStylesMerge } from '@angular/animations/browser/src/util';
 
 @Component({
   selector: 'app-room',
@@ -10,6 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class RoomComponent implements OnInit {
   // checked = false;
+  @select('allRoom') allRoom;
   corridor: Room[];
   corridorAsync: Observable<Room[]>;
   LedStatus: Observable<number>;
@@ -28,9 +31,12 @@ export class RoomComponent implements OnInit {
   }
 
   changed() {
-    console.log(this.corridor[0].LedStatus);
-    console.log(this.corridor[0]);
-    console.log(this.corridor);
+    // console.log(this.corridor[0].LedStatus);
+    // console.log(this.corridor[0]);
+    // console.log(this.corridor);
+    this.allRoom.subscribe(x => {
+      console.log(x);
+    })
 
   }
 }
