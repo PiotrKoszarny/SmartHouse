@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { ArduinoService } from './service/arduino.service';
 import { IAppState } from './redux/iAppState';
 import { NgRedux, select } from '@angular-redux/store';
-import { INIT_ROOM_COLLECTION } from './redux/actions';
+import { KITCHEN_CHANGE_LED } from './redux/actions';
+import { Room } from './model/room';
+import { createEmptyStateSnapshot } from '@angular/router/src/router_state';
 
 @Component({
   selector: 'app-root',
@@ -11,16 +13,12 @@ import { INIT_ROOM_COLLECTION } from './redux/actions';
 })
 export class AppComponent {
   // title = 'SmartHouse';
-  @select('allRoom') allRoom;
   constructor(
     private _arduinoService: ArduinoService,
     private _ngRedux: NgRedux<IAppState>,
   ) {
-    _arduinoService.getHomeStatus().subscribe(roomState => {
-      _ngRedux.dispatch({ type: INIT_ROOM_COLLECTION, allRoom: roomState });
-      this.allRoom.subscribe(x => {
-        console.log(x);
-      })
+    _arduinoService.getHomeStatus().subscribe((roomState: Room[]) => {
+      _ngRedux.dispatch({ type: KITCHEN_CHANGE_LED, kitchen: roomState.find(k => k.Id === 'kitchen') });
     });
   }
 }

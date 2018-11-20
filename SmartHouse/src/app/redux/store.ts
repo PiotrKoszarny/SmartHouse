@@ -1,15 +1,24 @@
 import { IAppState } from './iAppState';
-import { INIT_ROOM_COLLECTION } from './actions';
+import { KITCHEN_CHANGE_LED } from './actions';
 import { tassign } from 'tassign';
+import { Room } from '../model/room';
 export const INITIAL_STATE: IAppState = {
-    allRoom: []
+    kitchen: {
+        Id: 'kitchen',
+        LedStatus: 0,
+        TempStatus: 0
+    }
 };
 
 export function rootReducer(state: IAppState, action): IAppState {
     switch (action.type) {
-        case INIT_ROOM_COLLECTION:
+        case KITCHEN_CHANGE_LED:
             return tassign(state, {
-                allRoom: action.allRoom
+                kitchen: action.kitchen
+            });
+        case KITCHEN_CHANGE_LED:
+            return tassign(state, {
+                kitchen: action.kitchen.LedStatus
             });
         default:
             break;

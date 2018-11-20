@@ -1,33 +1,19 @@
 <div class="room-box">
   <div class="room-box-head">
     Oświetlenie
+    <div *ngIf="kitchen.LedStatus"><i class="material-icons icons-color">wb_incandescent</i></div>
+    <div *ngIf="!kitchen.LedStatus"><i class="material-icons">wb_incandescent</i></div>
   </div>
   <div class="room-box-content">
-    <mat-slide-toggle [ngModel]="LedStatus | async" class="example-margin" (change)="changed()">Slide me! {{LedStatus | async}}</mat-slide-toggle>
-
-  </div>
-</div>
-<!-- <div class="room-box">
-  <div class="room-box-head">
-    Czajnik
-  </div>
-  <div class="room-box-content">
-
+    <mat-slide-toggle [ngModel]="kitchen.LedStatus" class="example-margin" (change)="changed()">Oświetlenie
+      {{kitchen.LedStatus}}</mat-slide-toggle>
   </div>
 </div>
 <div class="room-box">
   <div class="room-box-head">
-    Czajnik
+    Temperatura
   </div>
   <div class="room-box-content">
-
+      {{kitchen.TempStatus}}
   </div>
 </div>
-<div class="room-box">
-  <div class="room-box-head">
-    Czajnik
-  </div>
-  <div class="room-box-content">
-
-  </div>
-</div> -->

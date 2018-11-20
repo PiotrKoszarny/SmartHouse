@@ -14,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { rootReducer, INITIAL_STATE } from './redux/store';
-import { createStore } from 'redux';
 import { IAppState } from './redux/iAppState';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
 
@@ -30,14 +29,13 @@ import { NgRedux, NgReduxModule } from '@angular-redux/store';
     AppRoutingModule,
     MatButtonModule,
     MatExpansionModule,
-    MatIconModule,
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
     FormsModule,
     HttpClientModule,
-    NgReduxModule
+    NgReduxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

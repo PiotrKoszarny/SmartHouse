@@ -1,5 +1,5 @@
 export interface Room {
-    Id: number;
+    Id: string;
     LedStatus: number;
     TempStatus: number;
 }

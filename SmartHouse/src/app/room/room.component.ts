@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ArduinoService } from '../service/arduino.service';
 import { Room } from '../model/room';
 import { Observable } from 'rxjs';
-import { select } from '@angular-redux/store';
-import { allowPreviousPlayerStylesMerge } from '@angular/animations/browser/src/util';
+import { select, NgRedux } from '@angular-redux/store';
+import { ResponseLedStatus } from '../model/responseLedStatus';
+import { IAppState } from '../redux/iAppState';
+import { KITCHEN_CHANGE_LED } from '../redux/actions';
 
 @Component({
   selector: 'app-room',
@@ -12,31 +14,32 @@ import { allowPreviousPlayerStylesMerge } from '@angular/animations/browser/src/
 })
 export class RoomComponent implements OnInit {
   // checked = false;
-  @select('allRoom') allRoom;
-  corridor: Room[];
-  corridorAsync: Observable<Room[]>;
-  LedStatus: Observable<number>;
+  @select('kitchen') kitchen$: Observable<Room>;
+  kitchen: Room;
 
   constructor(
     private _arduinoService: ArduinoService,
-  ) { }
+    private _ngRedux: NgRedux<IAppState>
+  ) {
+    this.kitchen$.subscribe(room => {
+      this.kitchen = room;
+      console.log(this.kitchen)
+
+    });
+   }
 
   ngOnInit() {
-    this.corridorAsync = this._arduinoService.getHomeStatus();
-    this.corridorAsync.subscribe((room: Room[]) => {
-      this.corridor = room;
-      // this.LedStatus = room[0].LedStatus;//.asObservable();
-    });
-    // this.LedStatus
+      
   }
 
   changed() {
-    // console.log(this.corridor[0].LedStatus);
-    // console.log(this.corridor[0]);
-    // console.log(this.corridor);
-    this.allRoom.subscribe(x => {
-      console.log(x);
-    })
+    this._arduinoService.postSetLedStatus().subscribe((result: ResponseLedStatus) => {
+      this.kitchen.LedStatus = result.LedStatus;
+      this._ngRedux.dispatch({ type: KITCHEN_CHANGE_LED, kitchen: this.kitchen });
+      this.kitchen$.subscribe(x => {
+        console.log(x);
+      });
+    });
 
   }
 }
