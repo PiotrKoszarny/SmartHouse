@@ -13,10 +13,6 @@ export class HomeService {
   initHomeArray(rooms: Room[]) {
     setTimeout(() => {
       this.home = rooms;
-      // .asObservable();
-      // rooms.forEach(element => {
-      //   this.home.push(element);
-      // });
     });
   }
 }

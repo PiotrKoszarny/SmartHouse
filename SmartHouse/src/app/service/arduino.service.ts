@@ -11,7 +11,6 @@ export class ArduinoService {
   constructor(
     private _http: HttpClient
   ) {
-    // this.baseUrl = '/api/';
   }
   getHomeStatus() {
     return this._http.get<Room[]>(this.arduinoUrl + '/GetAllRoomStatus');

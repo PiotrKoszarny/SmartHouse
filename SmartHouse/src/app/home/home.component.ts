@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ResponseLedStatus } from '../model/responseLedStatus';
-import { Observable } from 'rxjs';
-import { Room } from '../model/room';
 import { ArduinoService } from '../service/arduino.service';
 import { HomeService } from '../service/home.service';
 
@@ -33,11 +31,4 @@ export class HomeComponent implements OnInit {
       this._homeService.home.find(k => k.Name === roomName).LedStatus = result.LedStatus;
     });
   }
-
-  // changeLedLiving() {
-  //   this._arduinoService.postSetLedStatus('livingLed').subscribe((result: ResponseLedStatus) => {
-  //     // this.livingRoom.LedStatus = result.LedStatus;
-  //     // this._ngRedux.dispatch({ type: LIVINGROOM_CHANGE_LED, livingRoom: this.livingRoom });
-  //   });
-  // }
 }
