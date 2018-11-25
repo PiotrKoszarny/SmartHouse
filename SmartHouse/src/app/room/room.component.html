@@ -1,8 +1,9 @@
 <div class="room-box">
   <div class="room-box-head">
-    Oświetlenie
-    <div *ngIf="kitchen.LedStatus"><i class="material-icons icons-color">wb_incandescent</i></div>
-    <div *ngIf="!kitchen.LedStatus"><i class="material-icons">wb_incandescent</i></div>
+    <div *ngIf="kitchen.LedStatus"> Oświetlenie
+      <i class="material-icons icons-color">wb_incandescent</i></div>
+    <div *ngIf="!kitchen.LedStatus"> Oświetlenie
+      <i class="material-icons">wb_incandescent</i></div>
   </div>
   <div class="room-box-content">
     <mat-slide-toggle [ngModel]="kitchen.LedStatus" class="example-margin" (change)="changed()">Oświetlenie
@@ -12,8 +13,10 @@
 <div class="room-box">
   <div class="room-box-head">
     Temperatura
+    <img src="{{iconThermometr}}" style="height:40px">
+
   </div>
-  <div class="room-box-content">
-      {{kitchen.TempStatus}}
+  <div class="room-box-content ">
+    {{kitchen.TempStatus}} <b>C°</b>
   </div>
 </div>

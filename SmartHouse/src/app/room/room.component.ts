@@ -16,6 +16,7 @@ export class RoomComponent implements OnInit {
   // checked = false;
   @select('kitchen') kitchen$: Observable<Room>;
   kitchen: Room;
+  iconThermometr = '../../assets/warm.svg';
 
   constructor(
     private _arduinoService: ArduinoService,
@@ -26,10 +27,10 @@ export class RoomComponent implements OnInit {
       console.log(this.kitchen)
 
     });
-   }
+  }
 
   ngOnInit() {
-      
+
   }
 
   changed() {
