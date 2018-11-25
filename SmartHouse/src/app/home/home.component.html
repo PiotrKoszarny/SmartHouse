@@ -1,27 +1,65 @@
 <div class="container">
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let room of _homeService.home">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Kuchnia
+          {{room.Name}}
         </mat-panel-title>
-        <!-- <mat-panel-description>
-                Type your name and age
-                <mat-icon>account_circle</mat-icon>
-              </mat-panel-description> -->
       </mat-expansion-panel-header>
-      <app-room></app-room>
-      <!-- <mat-form-field>
-              <input matInput placeholder="First name">
-            </mat-form-field>
-        
-            <mat-form-field>
-              <input matInput type="number" min="1" placeholder="Age">
-            </mat-form-field>
-        
-            <mat-action-row>
-              <button mat-button color="primary" (click)="nextStep()">Next</button> 
-            </mat-action-row> -->
+      <div class="room-box">
+        <div class="room-box-head">
+          <div *ngIf="room.LedStatus"> Oświetlenie
+            <i class="material-icons" style="color: yellow">wb_incandescent</i>
+            </div>
+          <div *ngIf="!room.LedStatus"> Oświetlenie
+            <i class="material-icons">wb_incandescent</i></div>
+        </div>
+        <div class="room-box-content">
+          <button *ngIf="room.LedStatus" mat-button (click)="changeLed(room.Name)">Wyłącz</button>
+          <button *ngIf="!room.LedStatus" mat-button (click)="changeLed(room.Name)">Włącz</button>
+
+          {{room.LedStatus}}
+        </div>
+      </div>
+      <div class="room-box">
+        <div class="room-box-head">
+          Temperatura
+          <img src="{{iconThermometr}}" style="height:40px">
+
+        </div>
+        <div class="room-box-content ">
+          {{room.TempStatus}} <b>C°</b>
+        </div>
+      </div>
     </mat-expansion-panel>
+    <!-- <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Salon
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="room-box">
+        <div class="room-box-head">
+          <div *ngIf="livingRoom.LedStatus"> Oświetlenie
+            <i class="material-icons icons-color">wb_incandescent</i></div>
+          <div *ngIf="!livingRoom.LedStatus"> Oświetlenie
+            <i class="material-icons">wb_incandescent</i></div>
+        </div>
+        <div class="room-box-content">
+          <mat-slide-toggle [ngModel]="livingRoom.LedStatus" class="example-margin" (change)="changeLedLiving()">Oświetlenie
+            {{livingRoom.LedStatus}}</mat-slide-toggle>
+        </div>
+      </div>
+      <div class="room-box">
+        <div class="room-box-head">
+          Temperatura
+          <img src="{{iconThermometr}}" style="height:40px">
+
+        </div>
+        <div class="room-box-content ">
+          {{livingRoom.TempStatus}} <b>C°</b>
+        </div>
+      </div>
+    </mat-expansion-panel> -->
   </mat-accordion>
 </div>

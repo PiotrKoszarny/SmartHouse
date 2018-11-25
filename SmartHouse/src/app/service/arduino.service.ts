@@ -7,7 +7,7 @@ import { ResponseLedStatus } from '../model/responseLedStatus';
   providedIn: 'root'
 })
 export class ArduinoService {
-  arduinoUrl = 'http://192.168.137.63';
+  arduinoUrl = 'http://192.168.137.212';
   constructor(
     private _http: HttpClient
   ) {
@@ -17,8 +17,7 @@ export class ArduinoService {
     return this._http.get<Room[]>(this.arduinoUrl + '/GetAllRoomStatus');
   }
 
-  postSetLedStatus() {
-    const x =  this._http.get<ResponseLedStatus>(this.arduinoUrl + '/corridorled', {});
-    return x;
+  postSetLedStatus(room: string) {
+    return this._http.get<ResponseLedStatus>(this.arduinoUrl + '/' + room, {});
   }
 }

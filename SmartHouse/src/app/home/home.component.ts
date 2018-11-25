@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ResponseLedStatus } from '../model/responseLedStatus';
+import { Observable } from 'rxjs';
+import { Room } from '../model/room';
+import { ArduinoService } from '../service/arduino.service';
+import { HomeService } from '../service/home.service';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +12,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+
+  iconThermometr = '../../assets/warm.svg';
   constructor(
-
-  ) { }
-
-  ngOnInit() {
-
+    private _arduinoService: ArduinoService,
+    private _homeService: HomeService
+  ) {
   }
 
+  ngOnInit() {
+  }
+  changeLed(roomName: string) {
+    if (roomName === 'Łazienka') {
+      roomName = 'Lazienka';
+    }
+    this._arduinoService.postSetLedStatus(roomName + 'Led').subscribe((result: ResponseLedStatus) => {
+      if (roomName === 'Lazienka') {
+        roomName = 'Łazienka';
+      }
+      this._homeService.home.find(k => k.Name === roomName).LedStatus = result.LedStatus;
+    });
+  }
+
+  // changeLedLiving() {
+  //   this._arduinoService.postSetLedStatus('livingLed').subscribe((result: ResponseLedStatus) => {
+  //     // this.livingRoom.LedStatus = result.LedStatus;
+  //     // this._ngRedux.dispatch({ type: LIVINGROOM_CHANGE_LED, livingRoom: this.livingRoom });
+  //   });
+  // }
 }

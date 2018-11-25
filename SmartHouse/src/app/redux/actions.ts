@@ -1,2 +1,0 @@
-export const KITCHEN_INIT = 'KITCHEN_INIT';
-export const KITCHEN_CHANGE_LED = 'KITCHEN_CHANGE_LED';
