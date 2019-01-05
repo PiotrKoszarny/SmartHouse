@@ -14,20 +14,16 @@ export class HomeComponent implements OnInit {
   iconThermometr = '../../assets/warm.svg';
   constructor(
     private _arduinoService: ArduinoService,
-    private _homeService: HomeService
+    public _homeService: HomeService
   ) {
   }
 
   ngOnInit() {
   }
   changeLed(roomName: string) {
-    if (roomName === 'Łazienka') {
-      roomName = 'Lazienka';
-    }
+    console.log(roomName);
     this._arduinoService.postSetLedStatus(roomName + 'Led').subscribe((result: ResponseLedStatus) => {
-      if (roomName === 'Lazienka') {
-        roomName = 'Łazienka';
-      }
+
       this._homeService.home.find(k => k.Name === roomName).LedStatus = result.LedStatus;
     });
   }

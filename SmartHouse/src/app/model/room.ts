@@ -3,4 +3,5 @@ export interface Room {
     Name: string;
     LedStatus: number;
     TempStatus: number;
+    UserName?: string;
 }

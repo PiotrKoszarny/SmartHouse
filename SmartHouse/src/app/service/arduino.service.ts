@@ -7,7 +7,7 @@ import { ResponseLedStatus } from '../model/responseLedStatus';
   providedIn: 'root'
 })
 export class ArduinoService {
-  arduinoUrl = 'http://192.168.137.212';
+  arduinoUrl = 'http://192.168.137.120';
   constructor(
     private _http: HttpClient
   ) {
