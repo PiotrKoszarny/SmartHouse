@@ -5,17 +5,23 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
 import {
-  MatButtonModule, MatExpansionModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSlideToggleModule
+  MatButtonModule, MatExpansionModule, MatFormFieldModule,
+  MatInputModule, MatSlideToggleModule, MatCardModule,
+  MatDialogModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SettingsComponent } from './settings/settings.component';
+import { IpAddressAlertComponent } from './shared/ip-address-alert/ip-address-alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    HomeComponent
+    HomeComponent,
+    SettingsComponent,
+    IpAddressAlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,9 +34,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatSlideToggleModule,
     FormsModule,
     HttpClientModule,
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [IpAddressAlertComponent]
 })
 export class AppModule {
   constructor() { }

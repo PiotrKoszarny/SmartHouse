@@ -1,0 +1,12 @@
+<section class="container">
+  <div class="alert">
+    <h3>
+      Brak adresu IP centrali
+    </h3>
+    <mat-form-field appearance="outline">
+      <mat-label>Adres IP centrali</mat-label>
+      <input matInput [(ngModel)]="ipAddress" placeholder="podaj adres IP centrali">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="saveIPAddress()">Zapisz</button>
+  </div>
+</section>

@@ -4,7 +4,13 @@
       <div class="col-12 navigation">
         <ul class="navigation-menu">
           <li class="navigation-menu-item">
-            <a mat-raised-button color="primary" class="nav-item-link" routerLink="home">Twój dom</a>
+            <a mat-raised-button color="primary" class="nav-item-link" routerLink="twojdom">Twój dom</a>
+          </li>
+          <li class="navigation-menu-item">
+            <a mat-raised-button color="primary" class="nav-item-link" routerLink="ustawienia">Ustawienia</a>
+          </li>
+          <li class="navigation-menu-item">
+            <a mat-raised-button color="primary" class="nav-item-link" (click)="refreshHomeList()">Odśwież</a>
           </li>
         </ul>
       </div>

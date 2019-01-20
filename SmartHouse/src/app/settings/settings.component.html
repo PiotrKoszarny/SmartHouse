@@ -1,0 +1,27 @@
+<section class="container setting">
+  <mat-card>
+    <div class="setting-card">
+      <h3>Adres IP centrali</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Adres IP centrali</mat-label>
+        <input matInput [(ngModel)]="ipAddress" placeholder="Adres IP centrali">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="saveIPAddress()">Zapisz</button>
+    </div>
+  </mat-card>
+
+  <mat-card>
+    <div class="setting-card">
+      <h3>
+        Nazwa pomieszczeń:
+      </h3>
+      <div *ngFor="let room of home; let i = index">
+        <mat-form-field appearance="outline">
+          <mat-label>Nazwa pomieszczenia {{i+1}}</mat-label>
+          <input matInput [(ngModel)]="room.RoomName" placeholder="Adres IP centrali">
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" (click)="saveRoomName()">Zapisz</button>
+    </div>
+  </mat-card>
+</section>
