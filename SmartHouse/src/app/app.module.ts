@@ -7,13 +7,16 @@ import { HomeComponent } from './home/home.component';
 import {
   MatButtonModule, MatExpansionModule, MatFormFieldModule,
   MatInputModule, MatSlideToggleModule, MatCardModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSelectModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SettingsComponent } from './settings/settings.component';
 import { IpAddressAlertComponent } from './shared/ip-address-alert/ip-address-alert.component';
+import { ToastrModule } from 'ngx-toastr';
+import { TemperatureConverterPipe } from './shared/temperatureConverter/temperatureConverter';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import { IpAddressAlertComponent } from './shared/ip-address-alert/ip-address-al
     HomeComponent,
     SettingsComponent,
     IpAddressAlertComponent,
+    TemperatureConverterPipe
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { IpAddressAlertComponent } from './shared/ip-address-alert/ip-address-al
     FormsModule,
     HttpClientModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    ToastrModule.forRoot(),
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],

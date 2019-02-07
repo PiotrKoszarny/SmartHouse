@@ -23,5 +23,17 @@
       </div>
       <button mat-raised-button color="primary" (click)="saveRoomName()">Zapisz</button>
     </div>
+    <div>
+      <h3>
+        Jednostka temperatury:
+      </h3>
+      <mat-form-field style="width: 250px">
+        <mat-select (selectionChange)="changeUnit($event)" placeholder="Jednostka temperatury">
+          <mat-option *ngFor="let unit of units" [value]="unit">
+            {{unit}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </mat-card>
 </section>

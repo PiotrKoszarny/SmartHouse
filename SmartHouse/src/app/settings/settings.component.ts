@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Room } from '../model/room';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-settings',
@@ -8,6 +9,13 @@ import { Room } from '../model/room';
 })
 export class SettingsComponent implements OnInit {
   ipAddress = '';
+
+  units: string[] = [
+    'Stopnie Kelwina',
+    'Stopnie Celsjusza',
+    'Stopnie Farentheita'
+  ];
+
   home: Room[] = [{
     RoomName: localStorage.getItem('room00')
   },
@@ -21,7 +29,9 @@ export class SettingsComponent implements OnInit {
     RoomName: localStorage.getItem('room03')
   }
   ];
-  constructor() { }
+  constructor(
+    private _toastr: ToastrService
+  ) { }
 
   ngOnInit() {
     this.ipAddress = localStorage.getItem('ipAddress');
@@ -35,5 +45,16 @@ export class SettingsComponent implements OnInit {
       localStorage.setItem(`room0${index}`, element.RoomName);
       index++;
     });
+    this._toastr.success('', 'Dane zostały zapisane');
+  }
+
+  changeUnit(unit: any) {
+    if (unit.value === 'Stopnie Kelwina') {
+      localStorage.setItem('unit', 'K');
+    } else if (unit.value === 'Stopnie Celsjusza') {
+      localStorage.setItem('unit', 'C');
+    } else if (unit.value === 'Stopnie Farentheita') {
+      localStorage.setItem('unit', 'F');
+    }
   }
 }

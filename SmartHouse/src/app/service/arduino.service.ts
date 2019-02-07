@@ -5,6 +5,7 @@ import { ResponseLedStatus } from '../model/responseLedStatus';
 import { MatDialog } from '@angular/material';
 import { IpAddressAlertComponent } from '../shared/ip-address-alert/ip-address-alert.component';
 import { of, observable, Observable } from 'rxjs';
+import { HomeService } from './home.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class ArduinoService {
   arduinoUrl = '';
   constructor(
     private _http: HttpClient,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _homeService: HomeService
   ) {
     const ipAddress = localStorage.getItem('ipAddress');
     if (ipAddress === undefined || ipAddress === null || ipAddress.length === 0) {
@@ -28,6 +30,9 @@ export class ArduinoService {
     dialogRef.afterClosed().subscribe(result => {
       const ipAddress = localStorage.getItem('ipAddress');
       this.arduinoUrl = `http://${ipAddress}`;
+      this.getHomeStatus().subscribe((roomState: Room[]) => {
+        this._homeService.initHomeArray(roomState);
+      });
     });
   }
 

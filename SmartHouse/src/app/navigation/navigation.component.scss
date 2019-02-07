@@ -1,10 +1,13 @@
 .navigation{
+    margin-top: 20px;
+    text-align: center;
     .navigation-menu{
         list-style: none;
-        display: flex;
+        position: relative;
+        padding: 0;
         .navigation-menu-item{
-            padding: 5px;
-            margin: 0 5px;
+            padding: 5px 5px 5px 5px;
+            display: inline;
             .nav-item-link{
             }
         }

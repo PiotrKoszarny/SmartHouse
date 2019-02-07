@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-accordion>
+  <mat-accordion multi="true">
     <mat-expansion-panel *ngFor="let room of _homeService.home">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -10,26 +10,23 @@
       <div class="room-box">
         <div class="room-box-head">
           <div *ngIf="room.LedStatus"> Oświetlenie
-            <i class="material-icons" style="color: yellow">wb_incandescent</i>
-            </div>
+            <i class="material-icons" style="color: yellow; text-shadow: 0 0 15px yellow">wb_incandescent</i>
+          </div>
           <div *ngIf="!room.LedStatus"> Oświetlenie
-            <i class="material-icons">wb_incandescent</i></div>
+            <i class="material-icons" style="color: gray">wb_incandescent</i></div>
         </div>
         <div class="room-box-content">
-          <button *ngIf="room.LedStatus" mat-button (click)="changeLed(room.Name)">Wyłącz</button>
-          <button *ngIf="!room.LedStatus" mat-button (click)="changeLed(room.Name)">Włącz</button>
-
-          {{room.LedStatus}}
+          <button *ngIf="room.LedStatus" mat-raised-button color="primary" (click)="changeLed(room.Name)">Wyłącz</button>
+          <button *ngIf="!room.LedStatus" mat-raised-button color="primary" (click)="changeLed(room.Name)">Włącz</button>
         </div>
       </div>
       <div class="room-box">
         <div class="room-box-head">
           Temperatura
-          <img src="{{iconThermometr}}" style="height:40px">
-
+          <img src="{{iconThermometr}}" style="height:40px;">
         </div>
-        <div class="room-box-content ">
-          {{room.TempStatus}} <b>C°</b>
+        <div class="room-box-content">
+          {{room.TempStatus | temperatureConverter}}
         </div>
       </div>
     </mat-expansion-panel>
